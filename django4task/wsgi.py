@@ -1,5 +1,5 @@
 """
-WSGI config for task4django2 project.
+WSGI config for django4task project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -12,6 +12,6 @@ import os
 from django.core.wsgi import get_wsgi_application
 
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'task4django2.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'django4task.settings')
 
 application = get_wsgi_application()
