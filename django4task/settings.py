@@ -79,9 +79,14 @@ WSGI_APPLICATION = 'django4task.wsgi.application'
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
 DATABASES = {
-    'default': dj_database_url.config(
-        default=config('DATABASE_URL')
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'dervcsjkuphpr3',
+        'USER': 'yilsmznenvdnyh',
+        'PASSWORD': '624fd924b1e207e38367366085469771c172bb668d65ff033f94241eee450077',
+        'HOST': 'ec2-107-21-226-44.compute-1.amazonaws.com',
+        'PORT': '5432',
+    }
 }
 
 # Heroku: Update database configuration from $DATABASE_URL.
