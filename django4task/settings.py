@@ -11,13 +11,18 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
-from decouple import config
+from decouple import config, UndefinedValueError
 import dj_database_url
 import django_heroku
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_URL = '/static/'
+STATIC_TMP = os.path.join(BASE_DIR, 'statics')
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
@@ -34,7 +39,7 @@ ALLOWED_HOSTS = ['*']
 INSTALLED_APPS = [
     'main',
     'rest_framework',
-    # 'courses.apps.CoursesConfig',
+    'courses.apps.CoursesConfig',
     'whitenoise.runserver_nostatic',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -78,21 +83,21 @@ WSGI_APPLICATION = 'django4task.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'd8rvu19epaekn7',
-        'USER': 'vaojoicaodygra',
-        'PASSWORD': 'a8939f48875f097b34c1b1323c84eb7ba6c5626d43f49a3dfdb6c906c9b30983',
-        'HOST': 'ec2-107-21-226-44.compute-1.amazonaws.com',
-        'PORT': '5432',
+DATABASES = {'default': {}}
+try:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': 'd8rvu19epaekn7',
+            'USER': 'vaojoicaodygra',
+            'PASSWORD': 'a8939f48875f097b34c1b1323c84eb7ba6c5626d43f49a3dfdb6c906c9b30983',
+            'HOST': 'ec2-107-21-226-44.compute-1.amazonaws.com',
+            'PORT': '5432',
+        }
     }
-}
-
-# Heroku: Update database configuration from $DATABASE_URL.
-db_from_env = dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(db_from_env)
+except UndefinedValueError:
+    db_from_env = dj_database_url.config()
+    DATABASES['default'].update(db_from_env)
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -126,11 +131,3 @@ USE_L10N = True
 USE_TZ = True
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/2.2/howto/static-files/
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATIC_TMP = os.path.join(BASE_DIR, 'static')
-STATIC_URL = '/static/'
-STATICFILES_DIRS = (
-os.path.join(BASE_DIR, 'static'),
-)
