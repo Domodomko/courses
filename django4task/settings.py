@@ -81,9 +81,9 @@ WSGI_APPLICATION = 'django4task.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'dervcsjkuphpr3',
-        'USER': 'yilsmznenvdnyh',
-        'PASSWORD': '624fd924b1e207e38367366085469771c172bb668d65ff033f94241eee450077',
+        'NAME': 'd8rvu19epaekn7',
+        'USER': 'vaojoicaodygra',
+        'PASSWORD': 'a8939f48875f097b34c1b1323c84eb7ba6c5626d43f49a3dfdb6c906c9b30983',
         'HOST': 'ec2-107-21-226-44.compute-1.amazonaws.com',
         'PORT': '5432',
     }
