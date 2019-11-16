@@ -2,4 +2,4 @@ from django.http import HttpResponse
 
 # Create your views here.
 def index(request):
-    return HttpResponse("QUACK! /admin; /courses/all - all courses; /courses/createcat - create category; /courses/createbr - create branch; /courses/createcon - create contact; /courses/createcou - create course")
+    return HttpResponse("QUACK!<p>/admin; /courses/all - all courses; <p>/courses/createcat - create category; <p>/courses/createbr - create branch; <p>/courses/createcon - create contact; <p>/courses/createcou - create course")
