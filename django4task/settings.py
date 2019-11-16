@@ -32,6 +32,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    'main',
     'rest_framework',
     'courses.apps.CoursesConfig',
     'whitenoise.runserver_nostatic',
