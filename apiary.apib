@@ -1,80 +1,134 @@
 FORMAT: 1A
-HOST: http://polls.apiblueprint.org/
 
 # domodom
 
-Polls is a simple API allowing consumers to view polls and vote in them.
+Courses app
 
-## Questions Collection [/questions]
+## Courses Collection [/courses]
 
-### List All Questions [GET]
+### Show All Courses [GET]
 
 + Response 200 (application/json)
-
+    
         [
             {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
+                "count": 1,
+                "next": null,
+                "previous": null,
+                "results":
+                [
                     {
-                        "choice": "Swift",
-                        "votes": 2048
-                    }, {
-                        "choice": "Python",
-                        "votes": 1024
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 512
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 256
-                    }
+                        "name": "Funny English",
+                        "description": "We learn english!",
+                        "category": 1,
+                        "logo": "funnyeng.png",
+                        "branches": [
+                            {
+                                "latitude": "-321313",
+                                "longitude": "+65",
+                                "address": "3mdr. 67h."
+                            }
+                        ],
+                        "contacts": [
+                            {
+                                "type": "FACEBOOK",
+                                "value": "funnyenglishfb"
+                            },
+                            {
+                                "type": "PHONE",
+                                "value": "88005553555"
+                            }
+                            ]
+                    }               
                 ]
             }
         ]
 
-### Create a New Question [POST]
-
-You may create your own question using this action. It takes a JSON
-object containing a question and a collection of answers in the
-form of choices.
+### Create a New Course [POST]
 
 + Request (application/json)
-
-        {
-            "question": "Favourite programming language?",
-            "choices": [
-                "Swift",
-                "Python",
-                "Objective-C",
-                "Ruby"
-            ]
-        }
+    
+        [
+            {
+                "name": "This field is required.",
+                "description": "This field is required.",
+                "category": "This field is required.",
+                "logo": "This field is required.",
+                "branches": [
+                    "This field is required."
+                ],
+                "contacts": [
+                    "This field is required."
+                ]
+            }
+        ]
 
 + Response 201 (application/json)
 
     + Headers
 
-            Location: /questions/2
+            Location: /courses/1
 
     + Body
 
-            {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
+                [
                     {
-                        "choice": "Swift",
-                        "votes": 0
-                    }, {
-                        "choice": "Python",
-                        "votes": 0
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 0
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 0
-                    }
+                        "name": "Funny English",
+                        "description": "We learn english!",
+                        "category": 1,
+                        "logo": "funnyeng.png",
+                        "branches": [
+                            {
+                                "latitude": "-321313",
+                                "longitude": "+65",
+                                "address": "3mdr. 67h."
+                            }
+                        ],
+                        "contacts": [
+                            {
+                                "type": "FACEBOOK",
+                                "value": "funnyenglishfb"
+                            },
+                            {
+                                "type": "PHONE",
+                                "value": "88005553555"
+                            }
+                            ]
+                    }               
                 ]
-            }
+
+## Course [/courses/{course_id}]
+
+### View a Course Detail [GET]
+
++ Response 200 (application/json)
+        
+                [
+                    {
+                        "name": "Funny English",
+                        "description": "We learn english!",
+                        "category": 1,
+                        "logo": "funnyeng.png",
+                        "branches": [
+                            {
+                                "latitude": "-321313",
+                                "longitude": "+65",
+                                "address": "3mdr. 67h."
+                            }
+                        ],
+                        "contacts": [
+                            {
+                                "type": "FACEBOOK",
+                                "value": "funnyenglishfb"
+                            },
+                            {
+                                "type": "PHONE",
+                                "value": "88005553555"
+                            }
+                            ]
+                    }               
+                ]
+    
+### Delete the specific Course [DELETE]
+
++ Response 204
